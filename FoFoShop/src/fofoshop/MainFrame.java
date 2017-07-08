@@ -37,8 +37,9 @@ public class MainFrame extends JFrame implements ActionListener
     JFrame mainWin, scaleWin;
     
     JMenuBar mainMenuBar;
-    JMenu fileMenu, fileSubMenu, editMenu;
-    JMenuItem fItem1, fItem2, eItem1, eItem2;
+    JMenu fileMenu, fileSubMenu, editMenu, drawMenu;
+    JMenuItem fItem1, fItem2, fItem3, fItem4, eItem1, eItem2, eItem3, eItem4,
+            dItem1, dItem2, dItem3;
     BufferedImage currentimg;
     JLabel imgLabel;
     JPanel imgPanel;
@@ -64,9 +65,10 @@ public class MainFrame extends JFrame implements ActionListener
         mainWin.setSize(600, 600);
         mainWin.setResizable(false);
         mainWin.setLocationRelativeTo(null);
-        mainWin.setVisible(true);
+        //mainWin.setVisible(true);
 
         mainMenuBar();
+        mainWin.setVisible(true);
         imgPanel = new JPanel(new BorderLayout());
     }
     
@@ -83,16 +85,26 @@ public class MainFrame extends JFrame implements ActionListener
             fItem1 = new JMenuItem("Open", KeyEvent.VK_T);
             fItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
             fItem1.getAccessibleContext().setAccessibleDescription("Open Image");
-            //Fill In Action Listener With Method Calls When Completed//
             fItem1.addActionListener(this);
-            fileMenu.add(fItem1);           
+            fileMenu.add(fItem1);
             //File Menu 1st Item//
             fItem2 = new JMenuItem("Recent", KeyEvent.VK_T);
             fItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
             fItem2.getAccessibleContext().setAccessibleDescription("Recent Image History");
-            //Fill In Action Listener With Method Calls When Completed//
             fItem2.addActionListener(this);
             fileMenu.add(fItem2);
+            //File Menu Item//
+            fItem3 = new JMenuItem("New", KeyEvent.VK_T);
+            fItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            fItem3.getAccessibleContext().setAccessibleDescription("Open Image");
+            fItem3.addActionListener(this);
+            fileMenu.add(fItem3);
+            //File Menu Item//
+            fItem4 = new JMenuItem("Layer", KeyEvent.VK_T);
+            fItem4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            fItem4.getAccessibleContext().setAccessibleDescription("Open Image");
+            fItem4.addActionListener(this);
+            fileMenu.add(fItem4);
         //Second Menu Item//
         editMenu = new JMenu("Edit");
         editMenu.setMnemonic(KeyEvent.VK_A);
@@ -102,16 +114,48 @@ public class MainFrame extends JFrame implements ActionListener
             eItem1 = new JMenuItem("Scale", KeyEvent.VK_T);
             eItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
             eItem1.getAccessibleContext().setAccessibleDescription("Open Image");
-            //Fill In Action Listener With Method Calls When Completed//
             eItem1.addActionListener(this);
             editMenu.add(eItem1);           
             //File Menu 1st Item//
             eItem2 = new JMenuItem("Convert", KeyEvent.VK_T);
             eItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
             eItem2.getAccessibleContext().setAccessibleDescription("Open Image");
-            //Fill In Action Listener With Method Calls When Completed//
             eItem2.addActionListener(this);
             editMenu.add(eItem2);
+            //File Menu 1st Item//
+            eItem3 = new JMenuItem("Undo", KeyEvent.VK_T);
+            eItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            eItem3.getAccessibleContext().setAccessibleDescription("Open Image");
+            eItem3.addActionListener(this);
+            editMenu.add(eItem3);
+            //File Menu 1st Item//
+            eItem4 = new JMenuItem("Redo", KeyEvent.VK_T);
+            eItem4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            eItem4.getAccessibleContext().setAccessibleDescription("Open Image");
+            eItem4.addActionListener(this);
+            editMenu.add(eItem4);
+        drawMenu = new JMenu("Draw");
+        drawMenu.setMnemonic(KeyEvent.VK_A);
+        drawMenu.getAccessibleContext().setAccessibleDescription("Edit Navigation");
+        mainMenuBar.add(drawMenu);
+            //File Menu 1st Item//
+            dItem1 = new JMenuItem("Pen", KeyEvent.VK_T);
+            dItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            dItem1.getAccessibleContext().setAccessibleDescription("Open Image");
+            dItem1.addActionListener(this);
+            drawMenu.add(dItem1);
+            //File Menu 1st Item//
+            dItem2 = new JMenuItem("Brush", KeyEvent.VK_T);
+            dItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            dItem2.getAccessibleContext().setAccessibleDescription("Open Image");
+            dItem2.addActionListener(this);
+            drawMenu.add(dItem2);
+            //File Menu 1st Ite//
+            dItem3 = new JMenuItem("Eraser", KeyEvent.VK_T);
+            dItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            dItem3.getAccessibleContext().setAccessibleDescription("Open Image");
+            dItem3.addActionListener(this);
+            drawMenu.add(dItem3);
         //Set Final Window Bar
         mainWin.setJMenuBar(mainMenuBar);
     }
@@ -205,6 +249,14 @@ public class MainFrame extends JFrame implements ActionListener
         {
             System.out.println("Recent Button Selected");
         }
+        else if(e.getSource() == fItem3)
+        {
+            System.out.println("Recent Button Selected");
+        }
+        else if(e.getSource() == fItem4)
+        {
+            System.out.println("Recent Button Selected");
+        }
         else if(e.getSource() == eItem1)
         {
             currentimg = scaleImg(currentimg);
@@ -214,6 +266,26 @@ public class MainFrame extends JFrame implements ActionListener
         else if(e.getSource() == eItem2)
         {
             System.out.println("Convert Button Selected");
+        }
+        else if(e.getSource() == eItem3)
+        {
+            System.out.println("Undo Button Selected");
+        }
+        else if(e.getSource() == eItem4)
+        {
+            System.out.println("Redo Button Selected");
+        }
+        else if(e.getSource() == dItem1)
+        {
+            System.out.println("Pen Button Selected");
+        }
+        else if(e.getSource() == dItem2)
+        {
+            System.out.println("Brush Button Selected");
+        }
+        else if(e.getSource() == dItem3)
+        {
+            System.out.println("Eraser Button Selected");
         }
         
     }
